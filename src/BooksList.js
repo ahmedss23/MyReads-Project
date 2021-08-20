@@ -1,11 +1,9 @@
-import React , { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import BookShelf from './BookShelf';
 
-class BooksList extends Component {
-
-    render(){
-        const { books , updateBooks } = this.props;
+const BooksList = (props) => {
+        const { books , updateBooks } = props;
         var shelf = []
         for (var cat in books){
             shelf.push(<BookShelf key={cat} shelf={cat} books={books[cat]} updateBooks={updateBooks}/>)
@@ -23,8 +21,6 @@ class BooksList extends Component {
             <Link className="open-search" to="/search"></Link>
           </div>
         )
-    }
-
 }
-
+ 
 export default BooksList;

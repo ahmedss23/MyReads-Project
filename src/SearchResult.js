@@ -3,11 +3,13 @@ import * as BooksAPI from './BooksAPI'
 
 class BookResult extends Component {
     
-    selectChandeHandler(e,book){
+    selectChangeHandler(e,book){
         const value = e.target.value; 
         BooksAPI.update(book,value)
-        this.props.updateBooks();
-        this.props.updateSearchResult(book.id,value);
+        .then(()=>{
+            this.props.updateBooks();
+            this.props.updateSearchResult(book.id,value);
+        })
     }
     render(){
         const { book  } = this.props;
@@ -18,7 +20,7 @@ class BookResult extends Component {
                     <div className="book-top">
                     { book.imageLinks ? <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})`}}></div>:<div className="book-cover" style={{ width: 128, height: 193}}>NO IMAGE</div>}
                     <div className="book-shelf-changer">
-                        <select defaultValue={shelf?`${shelf}` : "none"} onChange={e=>this.selectChandeHandler(e,book)}>
+                        <select defaultValue={shelf?`${shelf}` : "none"} onChange={e=>this.selectChangeHandler(e,book)}>
                         <option value="move" disabled>Move to...</option>
                         {shelf==="currentlyReading"? <option value="currentlyReading">&#x2714; Currently Reading</option>:<option value="currentlyReading">Currently Reading</option>}
                         {shelf==="wantToRead"? <option value="wantToRead">&#x2714; Want to Read</option>:<option value="wantToRead"> Want to Read</option>}

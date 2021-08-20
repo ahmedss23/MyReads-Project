@@ -53,6 +53,9 @@ class BooksApp extends React.Component {
           <Route exact path="/search">
             <BooksSearch myBooks={this.state} updateBooks={this.UpdateBooks}/>
           </Route>
+          <Route>
+            <div><h1><center>404: Page Not Found</center></h1></div>
+          </Route>
         </BrowserRouter>
       </div>
     )
