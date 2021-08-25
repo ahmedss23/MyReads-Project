@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter , Route } from 'react-router-dom';
+import { BrowserRouter , Route , Switch } from 'react-router-dom';
 import './App.css';
 import * as BooksAPI from './BooksAPI';
 import BooksList from './BooksList';
@@ -47,6 +47,7 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         <BrowserRouter>
+        <Switch>
           <Route exact path="/">
             <BooksList books={this.state} updateBooks={this.UpdateBooks}/>
           </Route>
@@ -56,6 +57,7 @@ class BooksApp extends React.Component {
           <Route>
             <div><h1><center>404: Page Not Found</center></h1></div>
           </Route>
+          </Switch>
         </BrowserRouter>
       </div>
     )
